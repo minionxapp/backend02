@@ -28,7 +28,7 @@ export const app = express()
 const port = 3000
 
 //middleware
-// app.use(cors())
+app.use(cors())
 //setup untuk express
 app.use(helmet())
 app.use(mongoSanitize())
