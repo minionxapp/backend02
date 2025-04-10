@@ -3,12 +3,17 @@ import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
+
+import helmet from 'helmet'
+import mongoSanitize from 'express-mongo-sanitize'
+
 // Rputer
 import authRouter from './router/authRouter.js'
 import questionRouter from './router/questionRouter.js'
 import devRouter from './router/devRouter.js'
 import roleRouter from './router/roleRouter.js'
 import kelasRouter from './router/kelasRouter.js';
+import testRouter from './router/testRouter.js';
 
 
 import cookieParser from 'cookie-parser'
@@ -25,6 +30,8 @@ const port = 3000
 //middleware
 // app.use(cors())
 //setup untuk express
+app.use(helmet())
+app.use(mongoSanitize())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
@@ -37,6 +44,7 @@ if(process.env.NODE_Env ==='development'){
 
 
 // parent Router
+app.use(testRouter)
 app.use('/api/v1/dev',devRouter)
 app.use('/api/v1/auth',authRouter)
 app.use('/api/v1/question',questionRouter)
