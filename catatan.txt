@@ -1,0 +1,57 @@
+npm init
+npm install express
+npm i nodemon morgan
+
+pakage.json tambahkan sbb :
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "nodemon app.js"},
+
+buat file app.js 
+
+buka webbrowser :: 
+https://expressjs.com/en/starter/hello-world.html
+
+copy-kan hello word example script ke dalam file app.js
+
+jalankan printah pada terminal :: npm run dev
+
+
+//instalasi mongodb
+buat user di mongodb
+https://cloud.mongodb.com/v2/651269a036ac861bbc50ec0e#/overview
+
+password : bYhAcy9MwZ3H2ia1
+user : mugihnf
+
+koneksi
+mongodb+srv://mugihnf:<password>@cluster0.qtduj.mongodb.net/forum?retryWrites=true&w=majority&appName=Cluster0
+
+npm install mongoose dotenv
+
+buka pakage.json tambahkan sbb 
+{
+  "name": "forumapp",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",}
+
+buka webbrowser :: https://mongoosejs.com/docs/api/connection.html
+copy example connection
+
+instal cors
+npm i cors
+npm i validator
+npm - bcryptjs
+
+buat folder models
+buat file User.js dalm folder models
+
+
+percobaan
+pake jest
+install jest npm install --save-dev jest
+
+npm i jsonwebtoken
+npm i cookie-parser
+

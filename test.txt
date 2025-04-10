@@ -1,0 +1,7 @@
+npx jest user.test.js -t "should can not getUser valid cookies and user has ben deleted" --forceExit
+npx jest user.test.js  --forceExit
+
+
+npx jest user.test.js -t "10. should testrole logged with valid role and cookies /api/v1/auth/testrole" --forceExit
+question Find
+npx jest question.test.js -t "question Find" --forceExit
