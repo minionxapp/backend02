@@ -55,3 +55,8 @@ install jest npm install --save-dev jest
 npm i jsonwebtoken
 npm i cookie-parser
 
+
+
+#######deploy ke vercel
+buatkan vercel.json
+

@@ -5,7 +5,6 @@ export const authMiddleware =async(req,res,next) =>{
     let token;
     token = req.cookies.jwt
     let decode;
-
     if(!token){
         return next(
             res.status(401).json({
@@ -18,9 +17,10 @@ export const authMiddleware =async(req,res,next) =>{
 
     try {
         decode = await jwt.verify(token, process.env.JWT_SECRET)
-        // console.log(decode)
+        console.log(decode)
     } catch (error) {
-        // console.log(error)
+        console.log("error disini")
+        console.log(error)
         return next(
             res.status(401).json({
                 message :"Session invalid/Expired"
