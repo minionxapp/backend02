@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
 
+import cookieParser from 'cookie-parser'
 import helmet from 'helmet'
 import mongoSanitize from 'express-mongo-sanitize'
 
@@ -16,7 +17,6 @@ import kelasRouter from './router/kelasRouter.js';
 import testRouter from './router/testRouter.js';
 
 
-import cookieParser from 'cookie-parser'
 //unutk logger
 import morgan from 'morgan'
 import { errorHandler,notFound } from './middleware/errorHandler.js'

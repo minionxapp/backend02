@@ -60,3 +60,6 @@ npm i cookie-parser
 #######deploy ke vercel
 buatkan vercel.json
 
+unutk mengkill process
+sudo lsof -i :3000
+kill -9 <pid>

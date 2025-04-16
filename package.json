@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --runInBand --force-exit",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "start": "node index.js",
+    "server": "nodemon index.js"
   },
   "jest": {
     "transform": {
