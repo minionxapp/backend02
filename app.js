@@ -28,7 +28,15 @@ export const app = express()
 const port = 3000
 
 //middleware
-app.use(cors())
+
+
+const options = {
+  origin: 'http://localhost:5174',
+}
+app.use(cors(options))
+// app.use(cors())
+
+
 //setup untuk express
 app.use(helmet())
 app.use(mongoSanitize())
