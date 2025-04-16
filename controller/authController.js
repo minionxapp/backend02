@@ -18,15 +18,14 @@ const cretaeSendToken =(user,statusCode,res) =>{
     }
 
     res.cookie('jwt',token,cookieOption)
-    console.log("==================================")
-    console.log(res.headers['set-cookie'])
+   
     user.password=undefined
-    console.log("coookiiiesss........")
 
     // console.log(res)
     res.status(statusCode).json({
         data :user,
-        cookies : res.cookie
+        token : token,
+        cookieOption: cookieOption
     })
 
 }
