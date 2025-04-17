@@ -3,7 +3,7 @@ import User from '../models/User.js'
 
 export const authMiddleware =async(req,res,next) =>{
     let token;
-    token = req.cookies
+    token = req.cookies.jwt
     console.log("authMiddleware.......... "+token)
     console.log("authMiddleware reg.......... ")
     // console.log(req)

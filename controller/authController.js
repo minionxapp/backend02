@@ -21,7 +21,8 @@ const cretaeSendToken =(user,statusCode,res) =>{
    
     user.password=undefined
 
-    // console.log(res)
+    console.log("res.cookie============================")
+     console.log(res.cookie)
     res.status(statusCode).json({
         data :user,
         token : token,
