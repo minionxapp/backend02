@@ -5,7 +5,7 @@ export const authMiddleware =async(req,res,next) =>{
     let token;
     token = req.cookies.jwt
     console.log("authMiddleware.......... "+token)
-    console.log("restttttt.......... ")
+    console.log("authMiddleware reg.......... ")
     console.log(req)
     let decode;
     if(!token){

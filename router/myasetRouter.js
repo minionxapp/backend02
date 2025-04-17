@@ -4,7 +4,8 @@ import { CreateMyaset, GetAllMyaset, GetMyasetId, DeleteMyaset, UpdateMyaset, te
 const router = express.Router();
 
 router.post('/', authMiddleware, permissionUser("admin"), CreateMyaset);
-router.get('/', authMiddleware, permissionUser("admin"), GetAllMyaset);
+// router.get('/', authMiddleware, permissionUser("admin"), GetAllMyaset);
+router.get('/', GetAllMyaset);
 router.get('/testmyaset', testMyaset);
 
 router.get('/:id', authMiddleware, permissionUser("admin"), GetMyasetId);
