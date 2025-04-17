@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.post('/', authMiddleware, permissionUser("admin"), CreateMyaset);
 // router.get('/', authMiddleware, permissionUser("admin"), GetAllMyaset);
-router.get('/', GetAllMyaset);
+router.get('/', authMiddleware, GetAllMyaset);
+// router.get('/', GetAllMyaset);
 router.get('/testmyaset', testMyaset);
 
 router.get('/:id', authMiddleware, permissionUser("admin"), GetMyasetId);
