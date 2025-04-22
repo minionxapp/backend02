@@ -34,7 +34,7 @@ const options = {
   origin: 'http://localhost:5174',
 }
 // app.use(cors(options))
-app.use(cors({credentials: true, origin: 'http://localhost:5174'}));
+app.use(cors({origin: "*"}));
 // app.use(cors())
 
 
