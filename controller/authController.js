@@ -9,14 +9,8 @@ const signToken = id=>{
     })
 }
 
-const cretaeSendToken =async(user,statusCode,res) =>{
+const cretaeSendToken =(user,statusCode,res) =>{
     const token = signToken(user.id)
-    user.jwt = token
-    // const updateUser = 
-    const idUser = await User.findById(user.id)
-    idUser.jwt = token
-    idUser.save()
-    
     const cookieOption ={
         expire :new Date(1*24*60*60*1000 ),
         httpOnly : true,
@@ -27,7 +21,7 @@ const cretaeSendToken =async(user,statusCode,res) =>{
    
     user.password=undefined
 
-    //  console.log(res.cookie)
+     console.log(res.cookie)
      //tambhkan return
     return res.status(statusCode).json({
         data :user,
