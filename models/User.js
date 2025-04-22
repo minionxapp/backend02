@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
         type :String,
         enum:["user","admin","kasir"],
         default:"user"
+    },
+    jwt:{
+        type :String,
+        default:"jwt"
     }
 })
 
