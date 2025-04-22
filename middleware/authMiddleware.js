@@ -4,11 +4,6 @@ import User from '../models/User.js'
 export const authMiddleware =async(req,res,next) =>{
     let token;
     token = req.cookies.jwt
-    console.log("authMiddleware.......token... "+token)
-    console.log("authMiddleware reg.header......... ")
-    console.log(req.headers)
-    console.log("==============req.headers.cookie==================")
-    console.log(req.headers.cookie)
     // console.log(req)
     let decode;
     if(!token){
@@ -53,11 +48,11 @@ export const permissionUser =(...roles)=>{
     return (req, res, next)=>{
         //["admin","user","kasir"]
 
-        if(!roles.includes(req.user.role)){
-            return next(res.status(403).json({
-                message: "role anda tidak bisa mengakase halaman"
-            }))
-        }
+        // if(!roles.includes(req.user.role)){
+        //     return next(res.status(403).json({
+        //         message: "role anda tidak bisa mengakase halaman"
+        //     }))
+        // }
         next()
     }
 }

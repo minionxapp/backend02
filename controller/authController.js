@@ -10,6 +10,7 @@ const signToken = id=>{
 }
 
 const cretaeSendToken =(user,statusCode,res) =>{
+    console.log("cretaeSendToken")
     const token = signToken(user.id)
     const cookieOption ={
         expire :new Date(1*24*60*60*1000 ),
@@ -21,7 +22,7 @@ const cretaeSendToken =(user,statusCode,res) =>{
    
     user.password=undefined
 
-     console.log(res.cookie)
+    //  console.log(res.cookie)
      //tambhkan return
     return res.status(statusCode).json({
         data :user,
