@@ -25,8 +25,8 @@ const cretaeSendToken =(user,statusCode,res) =>{
      //tambhkan return
     return res.status(statusCode).json({
         data :user,
-        // token : token,
-        // cookieOption: cookieOption,
+        token : token,
+        cookieOption: cookieOption,
 
     })
 
