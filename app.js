@@ -34,7 +34,8 @@ const options = {
   origin: 'http://localhost:5174',
 }
 // app.use(cors(options))
-app.use(cors())
+app.use(cors({credentials: true, origin: 'http://localhost:5174'}));
+// app.use(cors())
 
 
 //setup untuk express
