@@ -18,16 +18,9 @@ const cretaeSendToken =(user,statusCode,res) =>{
     }
 
     res.cookie('jwt',token,cookieOption)
-   
     user.password=undefined
-
-     console.log(res.cookie)
-     //tambhkan return
-    return res.status(statusCode).json({
-        data :user,
-        token : token,
-        cookieOption: cookieOption,
-
+    res.status(statusCode).json({
+        data :user
     })
 
 }
@@ -55,9 +48,7 @@ export const LoginUser = asynchHandler(async (req, res) => {
     })
 
     if(userData && (await userData.comparePassword(req.body.password))){
-        return cretaeSendToken(userData,200,res)
-        // console.log("x")
-        // console.log(x)
+        cretaeSendToken(userData,200,res)
     }else{
         res.status(400)
         throw new Error("Invalid User")

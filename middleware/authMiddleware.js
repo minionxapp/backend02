@@ -2,16 +2,10 @@ import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
 
 export const authMiddleware =async(req,res,next) =>{
-    console.log("========authMiddleware....")
-    
-
-    console.log(JSON.stringify(req.headers));
-    console.log("========authMiddleware End....")
-    console.log(JSON.stringify(req.headers));
     let token;
     token = req.cookies.jwt
-    // console.log(req)
     let decode;
+
     if(!token){
         return next(
             res.status(401).json({
@@ -24,10 +18,9 @@ export const authMiddleware =async(req,res,next) =>{
 
     try {
         decode = await jwt.verify(token, process.env.JWT_SECRET)
-        console.log(decode)
+        // console.log(decode)
     } catch (error) {
-        console.log("error disini")
-        console.log(error)
+        // console.log(error)
         return next(
             res.status(401).json({
                 message :"Session invalid/Expired"
@@ -54,11 +47,11 @@ export const permissionUser =(...roles)=>{
     return (req, res, next)=>{
         //["admin","user","kasir"]
 
-        // if(!roles.includes(req.user.role)){
-        //     return next(res.status(403).json({
-        //         message: "role anda tidak bisa mengakase halaman"
-        //     }))
-        // }
+        if(!roles.includes(req.user.role)){
+            return next(res.status(403).json({
+                message: "role anda tidak bisa mengakase halaman"
+            }))
+        }
         next()
     }
 }
