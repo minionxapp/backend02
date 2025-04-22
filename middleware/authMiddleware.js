@@ -2,8 +2,11 @@ import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
 
 export const authMiddleware =async(req,res,next) =>{
-    console.log("authMiddleware....")
-    console.log(req.cookies)
+    console.log("========authMiddleware....")
+    
+
+    console.log(JSON.stringify(req.headers['cookie']));
+    console.log("========authMiddleware End....")
     let token;
     token = req.cookies.jwt
     // console.log(req)
