@@ -29,8 +29,10 @@ const cretaeSendToken =async(user,statusCode,res) =>{
     }
     res.cookie('jwt',token,cookieOption)
     user.password=undefined
-    return res.status(statusCode).json({
-        data :user
+     res.status(statusCode).json({
+        data :user,
+        token : token,
+        cookieOption : cookieOption
     })
 
 }
@@ -68,7 +70,7 @@ export const LoginUser = asynchHandler(async (req, res) => {
         console.log("9")
         console.log(createToken)
         console.log("10")
-        return createToken
+        // return createToken
     }else{
         res.status(400)
         throw new Error("Invalid User")
