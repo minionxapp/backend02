@@ -9,17 +9,27 @@ const signToken = id=>{
     })
 }
 
-const cretaeSendToken =(user,statusCode,res) =>{
+const cretaeSendToken =async(user,statusCode,res) =>{
     const token = signToken(user.id)
+    const userLogged = await User.findById(user.id)
+    // userLogged.jwt = token
+    // userLogged.save()
+    const updated = await userLogged.updateOne({ $set: {jwt:token}})
+    console.log("1 :: "+updated)
+    console.log(await User.findById(user.id))
+    console.log("2")
+    console.log("cretaeSendToken   "+token)
+    console.log("3")
+    // console.log(userLogged)
+
     const cookieOption ={
         expire :new Date(1*24*60*60*1000 ),
         httpOnly : true,
         security : false
     }
-
     res.cookie('jwt',token,cookieOption)
     user.password=undefined
-    res.status(statusCode).json({
+    return res.status(statusCode).json({
         data :user
     })
 
@@ -30,7 +40,8 @@ export const RegisterUser =asynchHandler (async (req, res) => {
             name : req.body.name,
             email : req.body.email,
             password : req.body.password,
-            role : req.body.role
+            role : req.body.role,
+            jwt:''
         })
         cretaeSendToken(createUser,201,res)
 })
@@ -46,9 +57,18 @@ export const LoginUser = asynchHandler(async (req, res) => {
     const userData = await User.findOne({
         email : req.body.email
     })
-
+    console.log("5")
+    console.log(userData)
+    console.log("6")
+    console.log(await userData.comparePassword(req.body.password))
+    console.log("7")
     if(userData && (await userData.comparePassword(req.body.password))){
-        cretaeSendToken(userData,200,res)
+        console.log("8. cek user login OK.... ")
+        const createToken = await cretaeSendToken(userData,200,res)
+        console.log("9")
+        console.log(createToken)
+        console.log("10")
+        return createToken
     }else{
         res.status(400)
         throw new Error("Invalid User")
