@@ -5,7 +5,7 @@ import asynchHandler from "../middleware/asyncHandler.js"
 
 const signToken = id=>{
     return jwt.sign({id},process.env.JWT_SECRET,{
-        expiresIn: '6d'
+        expiresIn: '5d'//'6d'
     })
 }
 
@@ -13,26 +13,20 @@ const cretaeSendToken =async(user,statusCode,res) =>{
     const token = signToken(user.id)
     const userLogged = await User.findById(user.id)
     // userLogged.jwt = token
-    // userLogged.save()
-    const updated = await userLogged.updateOne({ $set: {jwt:token}})
-    console.log("1 :: "+updated)
-    console.log(await User.findById(user.id))
-    console.log("2")
-    console.log("cretaeSendToken   "+token)
-    console.log("3")
-    // console.log(userLogged)
+    const x = await userLogged.updateOne({$set: {jwt: token} })
 
     const cookieOption ={
-        expire :new Date(1*24*60*60*1000 ),
+        // expire :new Date(1*24*60*60*1000 ),
+        expire :new Date(2*1000 ),
         httpOnly : true,
         security : false
     }
     res.cookie('jwt',token,cookieOption)
     user.password=undefined
-     res.status(statusCode).json({
+    res.status(statusCode).json({
         data :user,
         token : token,
-        cookieOption : cookieOption
+        cookieOption: cookieOption
     })
 
 }
@@ -59,18 +53,9 @@ export const LoginUser = asynchHandler(async (req, res) => {
     const userData = await User.findOne({
         email : req.body.email
     })
-    console.log("5")
-    console.log(userData)
-    console.log("6")
-    console.log(await userData.comparePassword(req.body.password))
-    console.log("7")
     if(userData && (await userData.comparePassword(req.body.password))){
-        console.log("8. cek user login OK.... ")
-        const createToken = await cretaeSendToken(userData,200,res)
-        console.log("9")
-        console.log(createToken)
-        console.log("10")
-        // return createToken
+        cretaeSendToken(userData,200,res)
+
     }else{
         res.status(400)
         throw new Error("Invalid User")
@@ -80,6 +65,11 @@ export const LoginUser = asynchHandler(async (req, res) => {
 
 export const LogoutUser = (req, res) => {
     res.cookie('jwt','',{
+        expire :new Date(0),
+        httpOnly : true,
+        security : false
+    })
+    res.cookie('token','',{
         expire :new Date(0),
         httpOnly : true,
         security : false

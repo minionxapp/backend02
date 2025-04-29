@@ -3,10 +3,8 @@ import User from '../models/User.js'
 
 export const authMiddleware =async(req,res,next) =>{
     let token;
-    console.log("========authMiddleware mytoken==========")
-    console.log(JSON.stringify(req.headers['mytoken']))
-    token = req.cookies.jwt
-    console.log("========Token==req.cookies.jwt========")
+    // token = req.cookies.jwt
+    token = (req.headers['token'])
     console.log(token)
     let decode;
 
@@ -18,19 +16,22 @@ export const authMiddleware =async(req,res,next) =>{
         )
     }
     
-    
-
     try {
         decode = await jwt.verify(token, process.env.JWT_SECRET)
-        // console.log(decode)
     } catch (error) {
-        // console.log(error)
+        console.log(error)
         return next(
             res.status(401).json({
                 message :"Session invalid/Expired"
             })
         )
     }
+    const dateNow = new Date()
+    const miliseconds = dateNow.getTime() / 1000
+    // console.log(miliseconds)
+    // if (Date.now() >= exp * 1000) {
+    //     console.log("expired");
+    //   }   
 
     const currenUser = await User.findById(decode.id)
     if(!currenUser){
