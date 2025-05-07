@@ -73,6 +73,7 @@ message: "Document Myaset berhasil di temukan",
 data: detailMyaset
 })
 */})
+
 export const DeleteMyaset = asyncHandler(async (req, res) => {
     //format id harus seuai dengan format ObjectId pad mongoo
     const idParam = req.params.id
@@ -104,11 +105,20 @@ export const UpdateMyaset = asyncHandler(async (req, res) => {
         throw new Error("Pertanyaan tidak ditemukan")
     }
     checkPermission(req.user, idMyaset.userId, res)
+    
     idMyaset.name = name
     idMyaset.description = description
     idMyaset.category = category
     idMyaset.tgl = tgl
-    await idMyaset.save()
+
+    // await idMyaset.save()
+    await idMyaset.updateOne({$set : idMyaset})
+
+    // const userLogged = await User.findById(user.id)
+    // const x = await userLogged.updateOne({$set: {jwt: token} })
+
+
+
     return res.status(200).json({
         message: "Berhasil update myaset",
         data: idMyaset

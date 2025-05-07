@@ -107,7 +107,8 @@ export const UpdateCategory = asyncHandler(async (req, res) => {
     checkPermission(req.user, idCategory.userId, res)
     idCategory.label = label
     idCategory.value = value
-    await idCategory.save()
+    await idCategory.updateOne({$set : idCategory})
+    // await idCategory.save()
     return res.status(200).json({
         message: "Berhasil update category",
         data: idCategory

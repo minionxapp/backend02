@@ -12,12 +12,11 @@ const signToken = id=>{
 const cretaeSendToken =async(user,statusCode,res) =>{
     const token = signToken(user.id)
     const userLogged = await User.findById(user.id)
-    // userLogged.jwt = token
     const x = await userLogged.updateOne({$set: {jwt: token} })
 
     const cookieOption ={
-        // expire :new Date(1*24*60*60*1000 ),
-        expire :new Date(2*1000 ),
+        expire :new Date(1*24*60*60*1000 ),
+        // expire :new Date(2*1000 ),
         httpOnly : true,
         security : false
     }

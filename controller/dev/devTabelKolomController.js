@@ -3,7 +3,10 @@ import DevTabelKolom from "../../models/dev/DevTabelKolom.js";
 
 
 export const createDevTabelKolom= asynchHandler(async(req,res)=>{
+    console.log("createDevTabelKolom ........")
     const { tabel, kol_name, kol_tipe,kol_unique,kol_default,kol_tabelId,kol_required } = req.body
+    console.log("tabel :::"+tabel+" kol_name "+ kol_name+" kol_tipe "+  kol_tipe+" kol_unique "+ kol_unique+" kol_default "+ kol_default+"  kol_tabelId"+ kol_tabelId+
+        " kol_required "+ kol_required )
     const newDevTabel = await DevTabelKolom.create({
         tabel,
         kol_name,

@@ -1,7 +1,7 @@
 import express from 'express'
 import  {authMiddleware} from '../middleware/authMiddleware.js'
 import { CreateModel,CreateTable } from '../controller/dev/createModelController.js'
-import { createDevTable,getAllTabels,getKolomByTabelId } from '../controller/dev/devTabelController.js'
+import { createDevTable,getAllTabels,getKolomByTabelId ,deleteTabel} from '../controller/dev/devTabelController.js'
 import { createDevTabelKolom, DeleteKolom } from '../controller/dev/devTabelKolomController.js'
 import {createModel,createController,createRouter} from '../controller/dev/devCreateCRUD.js'
 
@@ -16,6 +16,9 @@ const router = express.Router()
 router.get('/test',CreateModel)
 router.get('/createmodel',CreateTable)
 router.post('/tabel',authMiddleware,createDevTable)
+router.delete('/tabel/:id',authMiddleware,deleteTabel)
+//belum ada update
+//belum ada delete
 
 router.post('/tabelkolom',createDevTabelKolom)
 router.get('/alltables',getAllTabels)

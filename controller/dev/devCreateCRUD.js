@@ -239,7 +239,12 @@ export const GetKelasByName = asyncHandler(async (req, res) => {
         const element = Koloms[i];
         controllerScript = controllerScript + 'id'+capitalize(tabelName)+'.'+element.kol_name+'='+element.kol_name+'\n'
     }
-    controllerScript = controllerScript + 'await id'+capitalize(tabelName)+'.save()\n'+
+    // controllerScript = controllerScript + 'await id'+capitalize(tabelName)+'.save()\n'+
+
+    //ganti pake updateOne
+    controllerScript = controllerScript + 'await id'+capitalize(tabelName)+'.updateOne({$set :'+'id'+capitalize(tabelName)+')\n'+
+    await idMyaset.updateOne({$set : idMyaset})
+
     'return res.status(200).json({\n'+
         'message: "Berhasil update '+tabelName+'",\n'+
         'data: id'+capitalize(tabelName)+'\n'+
