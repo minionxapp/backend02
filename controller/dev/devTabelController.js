@@ -67,3 +67,12 @@ export const deleteTabel = asyncHandler(async (req, res) => {
         message: "Delete category berhasil"
     })
 })
+
+export const findTabel = asyncHandler(async(req,res)=>{
+    const tabel = await DevTabel.find({name :req.params.name})
+    console.log(tabel)
+    return res.status(200).json({
+        message: "Data Tabel ",
+        data: tabel
+    })
+})
