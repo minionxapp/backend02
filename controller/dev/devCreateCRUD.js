@@ -66,7 +66,7 @@ for (let i = 0; i < Koloms.length; i++) {
         
     }
 }
-console.log(cekUniq)
+// console.log(cekUniq)
 if(cekUniq==true){
 
     for (let i = 0; i < Koloms.length; i++) {
@@ -243,7 +243,7 @@ export const GetKelasByName = asyncHandler(async (req, res) => {
 
     //ganti pake updateOne
     controllerScript = controllerScript + 'await id'+capitalize(tabelName)+'.updateOne({$set :'+'id'+capitalize(tabelName)+')\n'+
-    await idMyaset.updateOne({$set : idMyaset})
+    'await idMyaset.updateOne({$set : idMyaset})'+
 
     'return res.status(200).json({\n'+
         'message: "Berhasil update '+tabelName+'",\n'+
